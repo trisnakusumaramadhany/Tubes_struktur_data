@@ -2,15 +2,21 @@
 #define PASIEN_H
 
 #include <string>
+using namespace std;
 
 struct Pasien {
-    std::string id;
-    std::string nama;
+    string id, nama, alamat, telp, keluhan;
     int umur;
-    std::string keluhan;
 };
 
+void loadPasien();
+void simpanPasien();
+
 void tambahPasien();
-void tampilPasien();
+void tampilSemuaPasien();
+
+void tampilPasienByID(string id);
+void editProfilPasien(string id);
+void tampilAntrian(string id);
 
 #endif

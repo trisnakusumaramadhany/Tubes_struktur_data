@@ -4,51 +4,107 @@
 
 using namespace std;
 
+/* ================= MENU ADMIN ================= */
+void menuAdmin() {
+    int pilih;
+    do {
+        cout << "\n=== MENU ADMIN ===\n";
+        cout << "1. Tambah Pasien\n";
+        cout << "2. Lihat Semua Pasien\n";
+        cout << "3. Logout\n";
+        cout << "Pilih: ";
+        cin >> pilih;
 
-int main() {
-    int pilihan;
-
-    while (true) {
-        cout << "\n=== MENU UTAMA ===\n";
-        cout << "1. Register\n";
-        cout << "2. Login\n";
-        cout << "3. Keluar\n";
-        cout << "Pilih menu: ";
-        cin >> pilihan;
-
-        if (pilihan == 1) {
-            registerUser();
-        } 
-        else if (pilihan == 2) {
-            if (login()) {
-                // masuk menu pasien jika login sukses
-                int menuPasien;
-                do {
-                    cout << "\n=== MENU DATA PASIEN ===\n";
-                    cout << "1. Tambah Pasien\n";
-                    cout << "2. Tampilkan Pasien\n";
-                    cout << "3. Logout\n";
-                    cout << "Pilih menu: ";
-                    cin >> menuPasien;
-
-                    if (menuPasien == 1) {
-                        tambahPasien();
-                    } 
-                    else if (menuPasien == 2) {
-                        tampilPasien();
-                    }
-
-                } while (menuPasien != 3);
-            }
-        } 
-        else if (pilihan == 3) {
-            cout << "Program selesai.\n";
-            break;
-        } 
-        else {
-            cout << "Menu tidak valid!\n";
+        switch (pilih) {
+            case 1:
+                tambahPasien();
+                break;
+            case 2:
+                tampilSemuaPasien();
+                break;
+            case 3:
+                cout << "Logout admin...\n";
+                break;
+            default:
+                cout << "Pilihan tidak valid!\n";
         }
-    }
+    } while (pilih != 3);
+}
+
+/* ================= MENU PASIEN ================= */
+void menuPasien() {
+    int pilih;
+    do {
+        cout << "\n=== MENU PASIEN ===\n";
+        cout << "1. Lihat Data Saya\n";
+        cout << "2. Lihat Antrian\n";
+        cout << "3. Edit Profil\n";
+        cout << "4. Logout\n";
+        cout << "Pilih: ";
+        cin >> pilih;
+
+        switch (pilih) {
+            case 1:
+                tampilPasienByID(currentPasienID);
+                break;
+            case 2:
+                tampilAntrian(currentPasienID);
+                break;
+            case 3:
+                editProfilPasien(currentPasienID);
+                break;
+            case 4:
+                cout << "Logout pasien...\n";
+                break;
+            default:
+                cout << "Pilihan tidak valid!\n";
+        }
+    } while (pilih != 4);
+}
+
+/* ================= MAIN ================= */
+int main() {
+    loadUserDariFile();
+    loadPasien();
+
+    int menu;
+    do {
+        cout << "\n=== MENU UTAMA ===\n";
+        cout << "1. Register (Admin / Pasien)\n";
+        cout << "2. Login Admin\n";
+        cout << "3. Login Pasien\n";
+        cout << "4. Exit\n";
+        cout << "Pilih: ";
+        cin >> menu;
+
+        switch (menu) {
+            case 1:
+                registerUser();
+                break;
+
+            case 2:
+                if (login("ADMIN"))
+                    menuAdmin();
+                else
+                    cout << "Login admin gagal!\n";
+                break;
+
+            case 3:
+                if (login("PASIEN"))
+                    menuPasien();
+                else
+                    cout << "Login pasien gagal!\n";
+                break;
+
+            case 4:
+                cout << "Program selesai.\n";
+                break;
+
+            default:
+                cout << "Menu tidak valid!\n";
+        }
+
+    } while (menu != 4);
 
     return 0;
 }
