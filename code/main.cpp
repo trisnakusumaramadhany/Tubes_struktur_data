@@ -12,6 +12,7 @@ void menuAdmin() {
         cout << "1. Tambah Pasien\n";
         cout << "2. Lihat Semua Pasien\n";
         cout << "3. Logout\n";
+        cout << "4. Ganti Password\n";
         cout << "Pilih: ";
         cin >> pilih;
 
@@ -40,6 +41,8 @@ void menuPasien() {
         cout << "2. Lihat Antrian\n";
         cout << "3. Edit Profil\n";
         cout << "4. Logout\n";
+        cout << "5. Ganti Password\n";
+
         cout << "Pilih: ";
         cin >> pilih;
 
@@ -55,6 +58,9 @@ void menuPasien() {
                 break;
             case 4:
                 cout << "Logout pasien...\n";
+                break;
+            case 5:
+                gantiPassword();
                 break;
             default:
                 cout << "Pilihan tidak valid!\n";
