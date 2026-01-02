@@ -103,7 +103,7 @@ int main() {
                 break;
 
             case 4:
-                cout << "Program selesai.\n";
+                cout << "Sampai bertemu lagi. jangan lupa jaga kesehatan.\n";
                 break;
 
             default:
