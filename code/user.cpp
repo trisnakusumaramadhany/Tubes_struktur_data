@@ -104,7 +104,7 @@ bool login(string role) {
         cout << "Login dikunci selama 30 detik...\n";
 
         for (int i = 30; i > 0; i--) {
-            cout << "\rTunggu " << i << " detik...";
+            cout << "\rMohon Tunggu " << i << " detik...";
             cout.flush();
             this_thread::sleep_for(chrono::seconds(1));
         }
