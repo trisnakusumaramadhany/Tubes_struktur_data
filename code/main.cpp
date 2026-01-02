@@ -4,7 +4,7 @@
 
 using namespace std;
 
-/* ================= MENU ADMIN ================= */
+/* ================= MENU ADMIN ================= *///
 void menuAdmin() {
     int pilih;
     do {
