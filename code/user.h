@@ -15,6 +15,7 @@ bool login(string role);
 void registerUser();
 void loadUserDariFile();
 void simpanUserKeFile();
+void gantiPassword();
 
 extern string currentUser;
 extern string currentRole;
