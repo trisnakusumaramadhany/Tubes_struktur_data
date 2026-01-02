@@ -139,3 +139,42 @@ void loadUserDariFile() {
 
     file.close();
 }
+void gantiPassword() {
+
+    string passLama, passBaru, konfirmasi;
+
+    cout << "\n=== GANTI PASSWORD ===\n";
+    cout << "Password lama: ";
+    cin >> passLama;
+
+    // cari user yang sedang login
+    for (int i = 0; i < totalUser; i++) {
+
+        if (users[i].username == currentUser &&
+            users[i].password == passLama) {
+
+            do {
+                cout << "Password baru: ";
+                cin >> passBaru;
+                cout << "Konfirmasi password: ";
+                cin >> konfirmasi;
+
+                if (passBaru != konfirmasi || !validPassword(passBaru)) {
+                    cout << "Password tidak valid!\n";
+                }
+
+            } while (passBaru != konfirmasi || !validPassword(passBaru));
+
+            // 🔁 GANTI DI ARRAY
+            users[i].password = passBaru;
+
+            // 💾 SIMPAN KE FILE
+            simpanUserKeFile();
+
+            cout << "Password berhasil diubah.\n";
+            return;
+        }
+    }
+
+    cout << "Password lama salah!\n";
+}
